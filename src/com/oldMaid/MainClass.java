@@ -93,13 +93,13 @@ public class MainClass {
 		boolean oneCard = false;  
 		for(int i=0;i<players.size();i++){
 			Player player = players.get(i);
-			if(player.getDeck().getSize()==1 && player.getDeck().getDecks().get(0).getCardName().equals("Sceleton"))
+			if(player.getDeck().getSize()==1 && player.getDeck().getDecks().get(0).getCardName().equals("Queen") && player.getDeck().getDecks().get(0).getCardSign().equals("♣"))
 				oneCard = true;
 		}
 		if(oneCard){
 			for(int i=0;i<players.size();i++){
 				Player player = players.get(i);
-				if(player.getDeck().getSize()==1 && player.getDeck().getDecks().get(0).getCardName().equals("Sceleton"))
+				if(player.getDeck().getSize()==1 && player.getDeck().getDecks().get(0).getCardName().equals("Queen") && player.getDeck().getDecks().get(0).getCardSign().equals("♣"))
 					oneCard = true;
 				else if(player.getDeck().getSize()!=0){
 					return false;
@@ -138,7 +138,7 @@ public class MainClass {
 	        Card temp = tempCards.get(i);
 	        tempCards.remove(i);
 	        for(int j=0;j<tempCards.size();j++){
-	        	if(temp.getCardName().equals(tempCards.get(j).getCardName())){
+	        	if(temp.getCardName().equals(tempCards.get(j).getCardName()) && temp.getPairId() == tempCards.get(j).getPairId()){
 	        		duplicates.add(temp);
 	        		duplicates.add(tempCards.get(j));
 	        		tempCards.remove(j);
@@ -197,16 +197,20 @@ public class MainClass {
 
 	public static void generateCards(){
 		allCards = new ArrayList<Card>();
-		String[] cardName = {"Goblin", "Archer", "Golem", "Wizard", "King", "Queen", "Bomber", "Pekka", "Berberian", "Healer"};
-		String[] cardSign = {"--!--", "-->", "@*@", "* * *", "$$$", "*$*", "000", "XxxX", "*BB*", "^$$^"};
-		for(int i=0;i<10;i++){
-			allCards.add(new Card(cardName[i], cardSign[i]));
-			allCards.add(new Card(cardName[i], cardSign[i]));
+		String[] cardName = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Joker", "Queen", "King"};
+		String[] cardSign = {"♠", "♦", "♥", "♣"};
+		for(int i=0;i<13;i++){
+			if(!cardName[i].equals("Queen")){
+				allCards.add(new Card(cardName[i], cardSign[0], 1));
+			}
+			allCards.add(new Card(cardName[i], cardSign[1], 2));
+			allCards.add(new Card(cardName[i], cardSign[2], 2));
+			allCards.add(new Card(cardName[i], cardSign[3], 1));
 		}
-		allCards.add(new Card("Sceleton", " @@@ "));
+//		allCards.add(new Card(cardName[11], cardSign[0], 1));
 	}
 	public static void generatePlayer(){
-		players = new ArrayList<Player>();
+		players = new ArrayList<>();
 		players.add(new Player("Player 1"));
 		players.add(new Player("Player 2"));
 		players.add(new Player("Player 3"));

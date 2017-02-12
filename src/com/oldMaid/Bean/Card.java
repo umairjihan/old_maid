@@ -4,13 +4,15 @@ public class Card {
 
 	String cardName;
 	String cardSign;
-	
+	int pairId;
+
 	public Card(){
 		
 	}
-	public Card(String cardName, String cardSign){
+	public Card(String cardName, String cardSign, int pairId){
 		this.cardName = cardName;
 		this.cardSign = cardSign;
+		this.pairId   = pairId;
 	}
 
 	public String getCardName() {
@@ -24,5 +26,12 @@ public class Card {
 	}
 	public void setCardSign(String cardSign) {
 		this.cardSign = cardSign;
+	}
+	public int getPairId() {
+		return pairId;
+	}
+
+	public void setPairId(int pairId) {
+		this.pairId = pairId;
 	}
 }
