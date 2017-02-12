@@ -186,10 +186,10 @@ public class MainClass {
 
 	private static void distributeCardsToPlayers() {
 		List<Card> tempCards = new ArrayList<Card>(allCards);
-		for(int i=0,k=0;i<21;i++,k++){
+		for(int i=0,k=0;i<allCards.size();i++,k++){
 			if(k==4)k=0;
 			Random r = new Random();
-			int randint = (Math.abs(r.nextInt()) % (21-i));
+			int randint = (Math.abs(r.nextInt()) % (allCards.size()-i));
 			players.get(k).getDeck().addToDeck(tempCards.get(randint));
 			tempCards.remove(randint);
 		}
